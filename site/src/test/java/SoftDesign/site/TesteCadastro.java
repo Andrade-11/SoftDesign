@@ -15,12 +15,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class TesteCadastro {
 		
 	@Test
-	public void Validations() {
+	public void ValidationsNegativeCases() {
 		 public static void main1(String []args)throws Exception{
 			 WebDriver driver = new ChromeDriver();
 		        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		        driver.get("https://portal.softdesign-rs.com.br/");
-		        driver.findElement(By.id("user_login")).sendKeys("gabriel.andrade");
+		        driver.findElement(By.id("user_login")).sendKeys("gabriel.andrade!@#%");
 		        driver.findElement(By.id("wp-submit")).click();
 		        String alertMessage = driver.switchTo().alert().getText();
 		        System.out.println(alertMessage);
@@ -30,17 +30,22 @@ public class TesteCadastro {
 		        } else{
 		            System.out.println("Accepted");
 		        }
-		        driver.findElement(By.id("user_login")).sendKeys("gabriel.andrade");
+		       
+		      	driver.findElement(By.id("user_login")).sendKeys("gabriel.andrade11");
 		        driver.findElement(By.id("wp-submit")).click();
-		         if (alertMessage.equals("First name Should not contain Special Characters")){
-		                System.out.println("Error displayed: First name Should not contain Special Characters");
-		                driver.switchTo().alert().dismiss();
-		            } else{
-		                System.out.println("Accepted");
-		            }
+		        String alertMessage2 = driver.switchTo().alert().getText();
+		        System.out.println(alertMessage2);
+		      if (alertMessage2.equals("First name Should not contain numbers")){
+		            System.out.println("Error displayed: First name Should not contain numbers");
+		            driver.switchTo().alert().dismiss();
+		        } else{
+		            System.out.println("Accepted");
+		        }
+		      
 		        driver.quit();
 		    }   
 		}
+		
 	}
 	
 	
@@ -57,9 +62,13 @@ public class TesteCadastro {
 			  username.sendKeys("gabrielndrade"); password.sendKeys("dgt356"); 
 			  login.click(); 
 			  String actualUrl="https://portal.softdesign-rs.com.br/"; 
-			  String expectedUrl= driver.getCurrentUrl(); if(actualUrl.equalsIgnoreCase(expectedUrl)) { 
-			  System.out.println("Test passed"); } else { System.out.println("Test failed"); } }   }
+			  String expectedUrl= driver.getCurrentUrl(); 
+			  if(actualUrl.equalsIgnoreCase(expectedUrl)) { 
+			  System.out.println("Test passed"); 
+			  } else { 
+				  System.out.println("Test failed"); } }   }
 	
-
+			
+			
 	}
 }
